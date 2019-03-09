@@ -21,8 +21,8 @@ class MyDivide:
     rowPairs = []  #行分割后的结果
 
     min_val = 10  #最小字符高度，防止切分噪音
-    dsize_x = 28  #分割后的图像高度
-    dsize_y = 28  #分割后图像宽度
+    dsize_x = 16  #分割后的图像高度
+    dsize_y = 16  #分割后图像宽度
 
     def __init__(self, name):
         self.imgName = name
@@ -35,6 +35,7 @@ class MyDivide:
 
         x = self.img.shape[0]
         y = self.img.shape[1]
+        rowPairs = []
         # 对于太小的图片进行放大
         if x < 360:
             self.img = cv2.resize(self.img, (360,360*x//y))
@@ -88,6 +89,9 @@ class MyDivide:
                 elif (self.data[start:end, j].all() and start_j >= 0):
                     if (end_j - start_j >= min_val):
                         tmp = self.data[start:end, start_j:end_j]
+
+                        # _,tmp = cv2.threshold(tmp, 127, 255, cv2.THRESH_BINARY_INV)
+                        tmp = cv2.copyMakeBorder(tmp, 10, 10, 10, 10, cv2.BORDER_CONSTANT, value=[255,255,255])
                         tmp = cv2.resize(tmp, (self.dsize_x, self.dsize_y))
                         cv2.imwrite(self.dividePath + '%d.png' % num, tmp)
                         num += 1
@@ -97,7 +101,7 @@ class MyDivide:
                         
         
 if __name__ == '__main__':
-    divide = MyDivide('d1-pos.png')
+    divide = MyDivide('f4-pos.png')
     divide.Bgr2Gray()
     divide.Gray2Binary()
     divide.Binary2Array()
