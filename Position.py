@@ -91,6 +91,7 @@ class MyPosition:
         rect = cv2.minAreaRect(c)
         Box = np.int0(cv2.boxPoints(rect))
         Final_img = cv2.drawContours(self.img.copy(), [Box], -1, (0, 0, 255), 3)
+        # cv2.imshow('f',Final_img)
         up = max(min(Box[i][1] for i in range(4)),0)
         down = min(max(Box[i][1] for i in range(4)),self.len_x)
         left = max(min(Box[i][0] for i in range(4)),0)
@@ -122,7 +123,8 @@ class MyPosition:
                 rotate_angle = -90 + rotate_angle
             elif rotate_angle < -45:
                 rotate_angle = 90 + rotate_angle
-        rotate_img = ndimage.rotate(self.result, rotate_angle)
+        # rotate_img = ndimage.rotate(self.result, rotate_angle,mode='constant',cval = 255.0)
+        rotate_img = ndimage.rotate(self.result, rotate_angle, mode='nearest')
         self.img = rotate_img
         return rotate_img
 
