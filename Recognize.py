@@ -217,11 +217,15 @@ class MyPredict(Mytf):
 
     def predict(self, sess,conv):
         self.count = 0
+        self.msg = []
+        self.predict_list = []
         for _, __, files in os.walk(self.imgPath):
             for filename in files:
                 self.count += 1
         if (self.count < 7):
-            print('数量过少，识别失败', self.count)
+            self.msg.append('数量过少，识别失败')
+
+            # print('数量过少，识别失败', self.count)
             
         for j in range(self.count):
             img = Image.open(self.imgPath + '%s.png'%j)
@@ -243,12 +247,11 @@ class MyPredict(Mytf):
                     max3 = result[0][i]
                     max3_index = i
 
-
-                    
             self.predict_list.append([max1_index,max1])
+            self.msg.append('图片%s.png的识别结果是：%s: %0.2f%%, %s: %0.2f%%, %s:%0.2f%%\n' % (j, max1_index, max1 * 100, max2_index, max2 * 100, max3_index, max3 * 100))
 
-            print('图片%s.png的识别结果是：%s: %0.2f%%, %s: %0.2f%%, %s:%0.2f%%, sum = %0.2f' % (j, max1_index, max1 * 100, max2_index, max2 * 100, max3_index, max3 * 100,result[0].sum()))
-
+            # print('图片%s.png的识别结果是：%s: %0.2f%%, %s: %0.2f%%, %s:%0.2f%%, sum = %0.2f' % (j, max1_index, max1 * 100, max2_index, max2 * 100, max3_index, max3 * 100,result[0].sum()))
+        return self.msg
 
     def operations(self):
         with tf.Session() as sess:
@@ -267,12 +270,13 @@ class MyPredict(Mytf):
             w_fc2 = sess.graph.get_tensor_by_name("w_fc2:0")
             b_fc2 = sess.graph.get_tensor_by_name("b_fc2:0")
             conv = tf.nn.softmax(tf.matmul(h_fc1_drop, w_fc2) + b_fc2)
-            self.predict(sess,conv)
+            return self.predict(sess,conv)
 
 
     def getLicense(self):
         # 查找概率最大的连续的7个数
         p =1.0
+        self.License = ''
         if self.count > 7:
             cur = 0
             for i in range(7):
@@ -291,7 +295,9 @@ class MyPredict(Mytf):
         else:
             for i in range(self.count):
                 self.License += NUMBERLIST[self.predict_list[i][0]]
-        print('识别结果为%s, 概率为%0.2f%%'%(self.License,p*100))
+                p = p * self.predict_list[i][1]
+        return (self.License,p)
+        # print('识别结果为%s, 概率为%0.2f%%' % (self.License, p * 100))
 
 
 

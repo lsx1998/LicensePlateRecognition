@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LRP</class>
+ <widget class="QMainWindow" name="LRP">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1461</width>
+    <height>777</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="LoadImg">
+    <property name="geometry">
+     <rect>
+      <x>1310</x>
+      <y>20</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>载入图片</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="directReconize">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>700</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>一键识别</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="nextStep">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>700</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>下一步</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="showDetail">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>700</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>展示细节</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="Path">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>1281</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="currentImg">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>100</y>
+      <width>501</width>
+      <height>581</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="message">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>280</y>
+      <width>371</width>
+      <height>461</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="originImg">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>501</width>
+      <height>581</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>70</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>原始图片</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>70</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>当前图片</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="result">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>100</y>
+      <width>371</width>
+      <height>131</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>70</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>识别结果</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>240</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>相关信息</string>
+    </property>
+   </widget>
+   <zorder>directReconize</zorder>
+   <zorder>nextStep</zorder>
+   <zorder>showDetail</zorder>
+   <zorder>Path</zorder>
+   <zorder>currentImg</zorder>
+   <zorder>message</zorder>
+   <zorder>originImg</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>result</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>LoadImg</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1461</width>
+     <height>18</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <layoutdefault spacing="4" margin="6"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>LoadImg</sender>
+   <signal>clicked()</signal>
+   <receiver>LoadImg</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1343</x>
+     <y>58</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1361</x>
+     <y>74</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>directReconize</sender>
+   <signal>clicked()</signal>
+   <receiver>directReconize</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>304</x>
+     <y>741</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>313</x>
+     <y>730</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>nextStep</sender>
+   <signal>clicked()</signal>
+   <receiver>nextStep</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>730</x>
+     <y>745</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>729</x>
+     <y>728</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>showDetail</sender>
+   <signal>clicked()</signal>
+   <receiver>showDetail</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>918</x>
+     <y>745</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>909</x>
+     <y>721</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <designerdata>
+  <property name="gridDeltaX">
+   <number>10</number>
+  </property>
+  <property name="gridDeltaY">
+   <number>10</number>
+  </property>
+  <property name="gridSnapX">
+   <bool>true</bool>
+  </property>
+  <property name="gridSnapY">
+   <bool>true</bool>
+  </property>
+  <property name="gridVisible">
+   <bool>true</bool>
+  </property>
+ </designerdata>
+ <slots>
+  <signal>load()</signal>
+ </slots>
+</ui>
