@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import cv2
 
 import numpy as np
@@ -29,10 +31,6 @@ class MyDivide:
         self.dividePath = self.dividePath+name.split('-', 1)[0]+'/'
         self.img = cv2.imread(self.imgPath + self.imgName)
 
-        if os.path.exists(self.dividePath):
-            shutil.rmtree(self.dividePath)
-        os.mkdir(self.dividePath)
-
         x = self.img.shape[0]
         y = self.img.shape[1]
         rowPairs = []
@@ -41,8 +39,6 @@ class MyDivide:
             self.img = cv2.resize(self.img, (360,360*x//y))
         elif y < 360:
             self.img = cv2.resize(self.img, (360*y//x,360))
-        # cv2.imshow('read image',self.img)
-        # cv2.waitKey(0)
 
     def Bgr2Gray(self):
         self.gray = cv2.cvtColor(self.img, cv2.COLOR_BGR2GRAY)
@@ -76,6 +72,9 @@ class MyDivide:
                 end_i = -1
     
     def columnSeg(self):
+        if os.path.exists(self.dividePath):
+            shutil.rmtree(self.dividePath)
+        os.mkdir(self.dividePath)
         start_j = -1
         end_j = -1
         min_val = 5
@@ -89,8 +88,6 @@ class MyDivide:
                 elif (self.data[start:end, j].all() and start_j >= 0):
                     if (end_j - start_j >= min_val):
                         tmp = self.data[start:end, start_j:end_j]
-
-                        # _,tmp = cv2.threshold(tmp, 127, 255, cv2.THRESH_BINARY_INV)
                         tmp = cv2.copyMakeBorder(tmp, 10, 10, 10, 10, cv2.BORDER_CONSTANT, value=[255,255,255])
                         tmp = cv2.resize(tmp, (self.dsize_x, self.dsize_y))
                         cv2.imwrite(self.dividePath + '%d.png' % num, tmp)

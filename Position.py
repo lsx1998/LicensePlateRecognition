@@ -1,4 +1,4 @@
-# encoding:utf-8
+# -*- coding: utf-8 -*-
 
 import cv2
 
@@ -83,7 +83,6 @@ class MyPosition:
             plt.title(titles[i])
             plt.xticks([]), plt.yticks([])
         plt.show()
-
 
     def getProfile(self):
         (cnts, _) = cv2.findContours(self.closed.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)

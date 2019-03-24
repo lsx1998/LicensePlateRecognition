@@ -224,8 +224,6 @@ class MyPredict(Mytf):
                 self.count += 1
         if (self.count < 7):
             self.msg.append('数量过少，识别失败')
-
-            # print('数量过少，识别失败', self.count)
             
         for j in range(self.count):
             img = Image.open(self.imgPath + '%s.png'%j)

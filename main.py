@@ -1,14 +1,9 @@
 # -*- coding: utf-8 -*-
-from UserInterface import*
+from Window import MyWindow
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication
 
 
-
-class MyWindow(QMainWindow, Ui_LRP):
-    def __init__(self, parent=None):
-        super(MyWindow, self).__init__(parent)
-        self.setupUi(self)
 
 
 if __name__ == '__main__':
