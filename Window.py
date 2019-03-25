@@ -41,6 +41,7 @@ class MyWindow(QMainWindow, Ui_LRP):
             return
         # 定位-倾斜矫正-定位
         self.nextStep.setText('初步定位')
+        self.currentImg.close()
         self.message.append('\n'+time.asctime(time.localtime(time.time())) +'\n选择了“直接识别”，将不输出中间处理结果')
         self.doPosition1()
         self.doRotate()

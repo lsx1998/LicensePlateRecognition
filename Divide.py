@@ -56,6 +56,7 @@ class MyDivide:
     def lineSeg(self):
         start_i = -1
         end_i = -1
+        self.rowPairs = []
         def Judge(linedata, length):
             x = (linedata.sum() / 255) / length
             return x < 0.8 and x > 0.2
